@@ -1,0 +1,21 @@
+{
+  "name": "emlakjet-challenge",
+  "version": "0.0.1",
+  "description": "Bot assistant for organizations using teams and slack.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "keygrip": "^1.0.1",
+    "koa": "^2.0.1",
+    "koa-bodyparser": "^4.1.0",
+    "koa-logger": "^2.0.1",
+    "koa-router": "^7.0.1",
+    "lodash": "^4.17.4",
+    "microservice-kit": "git+https://github.com/signalive/microservice-kit.git",
+    "mongoose": "^4.9.0"
+  }
+}
