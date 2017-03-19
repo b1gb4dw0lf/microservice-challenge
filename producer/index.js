@@ -40,6 +40,7 @@ app
 //Start Server
 microservice.init()
   .then(() => {
+    console.log('API is up and producing.');
     app.listen(3000);
   })
   .catch((error) => {
