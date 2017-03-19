@@ -39,3 +39,15 @@ services:
       - "./:/usr/src/app"
     links:
       - rabbitmq
+
+  badge:
+    build: ./consumers/badge
+    depends_on:
+      - rabbitmq
+    environment:
+      NODE_ENV: "development"
+    restart: unless-stopped
+    volumes:
+      - "./:/usr/src/app"
+    links:
+      - rabbitmq
