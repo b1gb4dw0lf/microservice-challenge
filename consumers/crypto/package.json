@@ -1,5 +1,5 @@
 {
-  "name": "user",
+  "name": "cryptoserv",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "crypto": "0.0.3",
     "lodash": "^4.17.4",
     "microservice-kit": "git+https://github.com/signalive/microservice-kit.git",
     "mongoose": "^4.9.1"
