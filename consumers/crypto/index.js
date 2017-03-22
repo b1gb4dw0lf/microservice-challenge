@@ -9,6 +9,9 @@ microserviceKit.init()
 
     let cryptoQueue = microserviceKit.amqpKit.getQueue('crypto');
 
+    /**
+     * @param {Object} {password, salt}
+     */
     cryptoQueue.consumeEvent('createPassword', async (data, done) => {
       try {
         let password = data.password;
@@ -20,11 +23,13 @@ microserviceKit.init()
       }
     });
 
-
+    /**
+     * @param {Object} {password, salt, hash}
+     */
     cryptoQueue.consumeEvent('compareHash', async (data, done) => {
       try {
         let hash = await crypto.generateHash(data.password, data.salt);
-        done(data.hash === hash);  
+        done(data.hash === hash);
       } catch (err) {
         throw new Error(err);
       }
