@@ -48,6 +48,17 @@ services:
       - "./:/usr/src/app"
     links:
       - rabbitmq
+  crypto:
+    build: ./consumers/crypto
+    depends_on:
+      - rabbitmq
+    environment:
+      NODE_ENV: "development"
+    restart: unless-stopped
+    volumes:
+      - "./:/usr/src/app"
+    links:
+      - rabbitmq
   nginx:
     image: nginx
     restart: unless-stopped
