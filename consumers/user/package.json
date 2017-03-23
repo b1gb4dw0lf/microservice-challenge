@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.5.0",
     "lodash": "^4.17.4",
     "microservice-kit": "git+https://github.com/signalive/microservice-kit.git",
     "mongoose": "^4.9.1"
