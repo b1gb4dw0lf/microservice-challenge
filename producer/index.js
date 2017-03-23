@@ -19,12 +19,14 @@ const router = new Router();
  * Include Routers
  */
 const index = require('./routers/index');
+const user = require('./routers/user');
 
 
 /*
  * Url Configurations
  */
 router.use('/', index.routes());
+router.use('/user', user.routes());
 
 
 /*
