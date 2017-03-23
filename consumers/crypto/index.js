@@ -17,7 +17,10 @@ microserviceKit.init()
         let password = data.password;
         let salt = await crypto.generateSal();
         let hash = await crypto.generateHash(password, salt);
-        done(hash);
+        done({
+          "hash": hash,
+          "salt": salt
+        });
       } catch (err) {
         throw new Error(err);
       }
