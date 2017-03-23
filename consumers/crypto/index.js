@@ -32,10 +32,10 @@ microserviceKit.init()
     cryptoQueue.consumeEvent('compareHash', async (data, done) => {
       try {
         let hash = await crypto.generateHash(data.password, data.salt);
-        done(data.hash === hash);
+        done(null, data.hash === hash);
       } catch (err) {
         console.log(err);
-        done({"error": err});
+        done(err);
       }
     });
 
