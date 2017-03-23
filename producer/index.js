@@ -9,6 +9,7 @@ const microservice = require('./lib/microservice-kit');
 const passport = require('koa-passport');
 const convert = require('koa-convert');
 const session = require('koa-generic-session');
+const auth = require('./lib/auth');
 
 
 /*
@@ -23,6 +24,7 @@ const router = new Router();
  */
 const index = require('./routers/index');
 const user = require('./routers/user');
+const sign = require('./routers/sign');
 
 
 /*
@@ -30,6 +32,7 @@ const user = require('./routers/user');
  */
 router.use('/', index.routes());
 router.use('/user', user.routes());
+router.use('/sign', sign.routes());
 
 
 /*
@@ -38,12 +41,12 @@ router.use('/user', user.routes());
 app.keys = ['somesecretkey', 'iliketurtle'];
 app
   .use(logger())
+  .use(bodyParser())
   .use(convert(session()))
   .use(passport.initialize())
   .use(passport.session())
   .use(router.routes())
-  .use(router.allowedMethods())
-  .use(bodyParser());
+  .use(router.allowedMethods());
 
 
 //Start Server
