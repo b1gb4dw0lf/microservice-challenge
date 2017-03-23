@@ -1,22 +1,24 @@
 const passport = require('koa-passport');
-const microserviceKit = require('microservice-kit');
+const microserviceKit = require('../lib/microservice-kit');
 const LocalStrategy = require('passport-local').Strategy;
 
 
-passport.use(new LocalStrategy(async (email, password, done) => {
-  let userQueue = microserviceKit.amqpKit.getQueue('user');
-  let cryptoQueue = microserviceKit.amqpKit.getQueue('crypto');
-
+passport.use(new LocalStrategy({
+                                  "usernameField": "email",
+                                  "passwordField": "password"
+                                }, async (email, password, done) => {
   try {
-    let user = await userQueue.sendEvent('get', {email: email});
-    if (user.error) done('Wrong email or password.', false);
+    let userQueue = microserviceKit.amqpKit.getQueue('user');
+    let cryptoQueue = microserviceKit.amqpKit.getQueue('crypto');
 
+    let user = await userQueue.sendEvent('get', {email: email});
     let passwordComparison = await cryptoQueue.sendEvent('compareHash', {
                                                 "password": password,
                                                 "salt": user.salt,
                                                 "hash": user.password
                                               });
-    if (!passwordComparison || passwordComparison.error)
+
+    if (!passwordComparison)
       done('Wrong email or password.', false);
 
     //Success or is it?
@@ -27,19 +29,22 @@ passport.use(new LocalStrategy(async (email, password, done) => {
 }));
 
 passport.serializeUser(async (user, done) => {
-  if (user && user.email)
+  if (user && user.email){
     done(null, user.email);
-  else
+  } else {
     done('Something went wrong.');
+  }
 });
 
 passport.deserializeUser(async (email, done) => {
-  let userQueue = microserviceKit.amqpKit.getQueue('user');
-
   try {
+    let userQueue = microserviceKit.amqpKit.getQueue('user');
     let user = await userQueue.sendEvent('get', {"email": email})
     done(null, user);
   } catch (err) {
     done(err);
   }
 });
+
+
+module.exports = passport;
