@@ -10,7 +10,7 @@ microserviceKit.init()
     let cryptoQueue = microserviceKit.amqpKit.getQueue('crypto');
 
     /**
-     * @param {Object} {password, salt}
+     * @param {Object} {password}
      */
     cryptoQueue.consumeEvent('createPassword', async (data, done) => {
       try {
