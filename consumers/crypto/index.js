@@ -14,15 +14,15 @@ microserviceKit.init()
      */
     cryptoQueue.consumeEvent('createPassword', async (data, done) => {
       try {
-        let password = data.password;
-        let salt = await crypto.generateSal();
-        let hash = await crypto.generateHash(password, salt);
-        done({
+        let salt = await crypto.generateSalt();
+        let hash = await crypto.generateHash(data.password, salt);
+        done(null, {
           "hash": hash,
           "salt": salt
         });
       } catch (err) {
-        throw new Error(err);
+        console.log(err);
+        done(err);
       }
     });
 
@@ -34,7 +34,8 @@ microserviceKit.init()
         let hash = await crypto.generateHash(data.password, data.salt);
         done(data.hash === hash);
       } catch (err) {
-        throw new Error(err);
+        console.log(err);
+        done({"error": err});
       }
     });
 
