@@ -6,12 +6,15 @@ services:
     ports:
       - '15672:15672'
       - '5672:5672'
-  mongo:
+
+  database:
     image: mongo:latest
+    hostname: database
     volumes:
       - ./data/db:/data/db
     ports:
       - "27017:27017"
+
   producer:
     build: ./producer
     hostname: ejapi
@@ -26,10 +29,12 @@ services:
       - rabbitmq
     ports:
       - "3000:3000"
+
   user:
     build: ./consumers/user
     depends_on:
       - rabbitmq
+      - database
     environment:
       NODE_ENV: "development"
     restart: unless-stopped
@@ -37,28 +42,32 @@ services:
       - "./:/usr/src/app"
     links:
       - rabbitmq
-  badge:
-    build: ./consumers/badge
-    depends_on:
-      - rabbitmq
-    environment:
-      NODE_ENV: "development"
-    restart: unless-stopped
-    volumes:
-      - "./:/usr/src/app"
-    links:
-      - rabbitmq
-  crypto:
-    build: ./consumers/crypto
-    depends_on:
-      - rabbitmq
-    environment:
-      NODE_ENV: "development"
-    restart: unless-stopped
-    volumes:
-      - "./:/usr/src/app"
-    links:
-      - rabbitmq
+      - database
+  #
+  # badge:
+  #   build: ./consumers/badge
+  #   depends_on:
+  #     - rabbitmq
+  #   environment:
+  #     NODE_ENV: "development"
+  #   restart: unless-stopped
+  #   volumes:
+  #     - "./:/usr/src/app"
+  #   links:
+  #     - rabbitmq
+  #
+  # crypto:
+  #   build: ./consumers/crypto
+  #   depends_on:
+  #     - rabbitmq
+  #   environment:
+  #     NODE_ENV: "development"
+  #   restart: unless-stopped
+  #   volumes:
+  #     - "./:/usr/src/app"
+  #   links:
+  #     - rabbitmq
+
   nginx:
     image: nginx
     restart: unless-stopped
