@@ -18,6 +18,7 @@
     "koa-router": "^7.0.1",
     "lodash": "^4.17.4",
     "microservice-kit": "git+https://github.com/signalive/microservice-kit.git",
-    "mongoose": "^4.9.0"
+    "mongoose": "^4.9.0",
+    "passport-local": "^1.0.0"
   }
 }
