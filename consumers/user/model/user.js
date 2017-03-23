@@ -21,7 +21,7 @@ User.pre('save', async function(next) {
   try {
     let cryptoQueue = microserviceKit.amqpKit.getQueue('crypto');
     let cryptoResponse = await cryptoQueue.sendEvent('createPassword', {"password": this.password});
-    this.password = cryptoResponse.password;
+    this.password = cryptoResponse.hash;
     this.salt = cryptoResponse.salt;
     next();
   } catch (err) {
