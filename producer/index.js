@@ -6,6 +6,9 @@ const Router = require('koa-router');
 const logger = require('koa-logger');
 const bodyParser = require('koa-bodyparser');
 const microservice = require('./lib/microservice-kit');
+const passport = require('koa-passport');
+const convert = require('koa-convert');
+const session = require('koa-generic-session');
 
 
 /*
@@ -32,8 +35,12 @@ router.use('/user', user.routes());
 /*
  * App configurations.
  */
+app.keys = ['somesecretkey', 'iliketurtle'];
 app
   .use(logger())
+  .use(convert(session()))
+  .use(passport.initialize())
+  .use(passport.session())
   .use(router.routes())
   .use(router.allowedMethods())
   .use(bodyParser());
