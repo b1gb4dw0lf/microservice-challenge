@@ -23,9 +23,9 @@ router.post('/', async (ctx, next) => {
   } catch (err) {
     console.log(err);
     if (err.code = 11000) {
-      ctx.status = 404;
+      ctx.status = 400;
     } else {
-      ctx.status = 500;      
+      ctx.status = 500;
     }
   }
 });
