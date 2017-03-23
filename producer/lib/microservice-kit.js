@@ -14,8 +14,8 @@ const microserviceKit = new MicroserviceKit({
         options: {durable: true}
       },
       {
-        name: 'submarine',
-        key: 'submarine',
+        name: 'user',
+        key: 'user',
         options: {durable: true}
       }
     ]
