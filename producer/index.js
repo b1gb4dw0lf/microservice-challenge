@@ -6,10 +6,9 @@ const Router = require('koa-router');
 const logger = require('koa-logger');
 const bodyParser = require('koa-bodyparser');
 const microservice = require('./lib/microservice-kit');
-const passport = require('koa-passport');
+const passport = require('./lib/auth');
 const convert = require('koa-convert');
 const session = require('koa-generic-session');
-const auth = require('./lib/auth');
 
 
 /*

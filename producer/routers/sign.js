@@ -1,19 +1,26 @@
 const Router = require('koa-router');
 const microserviceKit = require('../lib/microservice-kit');
-const passport = require('koa-passport');
+const passport = require('../lib/auth');
 
 const router = new Router();
 
 
 router.post('/in', async (ctx, next) => {
-  passport.authenticate('local', async (err, user, info, status) => {
+  return passport.authenticate('local', async (err, user, info) => {
+    if (err) {
+      console.log(err);
+      ctx.throw(500);
+    }
+
+    console.log(info);
+
     if (user === false) {
-      ctx.status = 401;
+      ctx.throw(401);
     } else {
       ctx.status = 200; //TODO: Redirect.
       return ctx.login(user);
     }
-  });
+  })(ctx, next);
 });
 
 router.get('/out', async (ctx, next) => {
