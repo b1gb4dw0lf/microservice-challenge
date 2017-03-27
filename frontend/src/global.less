@@ -1,0 +1,53 @@
+@import './variables.less';
+
+body {
+  margin: 0;
+  padding: 60px 0 0 0 !important;
+  font-family: @font-rule;
+
+  .main-container {
+    max-width: 700px;
+    margin: auto;
+  }
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+#top-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: @black;
+
+  .left {
+    li {
+      margin-right: 20px;
+    }
+  }
+
+  ul {
+    display: inline-block;
+    list-style-type: none;
+    margin: 0;
+    padding: 20px;
+
+    li {
+      display: inline-block;
+      font-size: 18px;
+      font-weight: 500;
+
+      a {
+        display: block;
+        color: @white;
+      }
+    }
+  }
+}
