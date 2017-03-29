@@ -32,8 +32,8 @@ class Leaderboard extends React.Component {
 
     let leaderboard = [];
     if (this.state.leaderboard) {
-      this.state.leaderboard.forEach((item) => {
-        leaderboard.push(<UserPoint firstName={item.firstName} lastName={item.lastName} points={item.points}/>);
+      this.state.leaderboard.forEach((item, index) => {
+        leaderboard.push(<UserPoint key={index} firstName={item.firstName} lastName={item.lastName} points={item.points}/>);
       });
     }
 
