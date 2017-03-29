@@ -38,16 +38,16 @@ class AddUser extends React.Component {
   }
 
   handleSubmit(event) {
-    axios.post('/api/user', {
-      name: this.state.email,
-      slug: this.state.firstName,
-      type: this.state.lastName,
-      amount: this.state.password
+    axios.post('/api/badge', {
+      name: this.state.name,
+      slug: this.state.slug,
+      type: this.state.type,
+      amount: this.state.amount
     })
       .then(() => {
         this.setState({
           error: '',
-          success: 'Successfully added user.'
+          success: 'Successfully added badge.'
         });
 
       })
@@ -80,7 +80,7 @@ class AddUser extends React.Component {
         <label>Amount</label>
         <input type="number" name="amount" onChange={this.handleAmountChangeEvent} value={this.state.amount}/>
       </div>
-      <input type="submit" onClick={this.handleSubmit} value="Add User"/>
+      <input type="submit" onClick={this.handleSubmit} value="Add Badge"/>
     </div>);
   }
 }
