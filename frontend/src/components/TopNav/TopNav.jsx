@@ -22,7 +22,7 @@ class TopNav extends React.Component{
         </ul>
         <ul className="right">
           <li><Link to="/profile">Profile</Link></li>
-          <li><Link to="/login">Profile</Link></li>
+          <li><Link to="/login">Login</Link></li>
         </ul>
 
       </div>
