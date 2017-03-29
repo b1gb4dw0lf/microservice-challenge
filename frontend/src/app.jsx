@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter as Router} from 'react-router-dom';
+
 import './global.less'
 
-import BadgeList from './components/BadgeList/BadgeList.jsx';
+import TopNav from './components/TopNav/TopNav.jsx';
 
 ReactDOM.render(
-  <BadgeList />,
-  document.getElementById('root')
-);
+  <Router>
+    <TopNav/>
+  </Router>,
+  document.getElementById('root'));
