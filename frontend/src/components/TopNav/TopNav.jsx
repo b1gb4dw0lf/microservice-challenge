@@ -7,6 +7,7 @@ import Dum2 from '../Dum2/Dum2.jsx';
 import Dum3 from '../Dum3/Dum3.jsx';
 import Home from '../Home/Home.jsx';
 import Login from '../Login/Login.jsx';
+import Admin from '../Admin/Admin.jsx';
 
 import './TopNav.less';
 
@@ -21,6 +22,7 @@ class TopNav extends React.Component{
           <li><Link to="/dum3">Dum3</Link></li>
         </ul>
         <ul className="right">
+          <li><Link to="/admin">Admin</Link></li>
           <li><Link to="/profile">Profile</Link></li>
           <li><Link to="/login">Login</Link></li>
         </ul>
@@ -31,6 +33,7 @@ class TopNav extends React.Component{
       <Route path="/dum1" component={Dum1} />
       <Route path="/dum2" component={Dum2} />
       <Route path="/dum3" component={Dum3} />
+      <Route path="/admin" component={Admin} />
       <Route path="/profile" component={Profile} />
       <Route path="/login" component={Login} />
     </div>)
