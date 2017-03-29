@@ -1,0 +1,41 @@
+@import '../../variables.less';
+
+.leaderboard{
+
+  ul {
+    width: calc(~'100% - 40px');
+    padding: 0 20px 0 20px;
+
+    li:first-child {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    li:last-child {
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    li:nth-child(odd) {
+      background: rgba(95, 117, 142, 0.6);
+      color: @white;
+    }
+
+    li:nth-child(even) {
+      background: rgba(56, 57, 97, 0.6);
+      color: @white;
+    }
+
+    li {
+      padding: 0 20px 0 20px;
+      width: calc(~'100% - 40px');
+      display: inline-block;
+      list-style-type: none;
+      margin: 0;
+
+      h3 {
+        display: inline-block;
+      }
+    }
+  }
+}

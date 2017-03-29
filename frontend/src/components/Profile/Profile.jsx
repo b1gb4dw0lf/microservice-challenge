@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 
 import PersonalInfo from '../PersonalInfo/PersonalInfo.jsx';
 import BadgeList from '../BadgeList/BadgeList.jsx';
+import Leaderboard from '../Leaderboard/Leaderboard.jsx';
 
 class Profile extends React.Component {
 
@@ -28,10 +29,11 @@ class Profile extends React.Component {
     if (this.state.received401) {
       return <Redirect to="/login" />
     }
-    return <div className="main-container">
+    return (<div className="main-container">
       <PersonalInfo name={this.state.user.firstName}/>
       <BadgeList />
-    </div>
+      <Leaderboard />
+    </div>)
   }
 }
 
