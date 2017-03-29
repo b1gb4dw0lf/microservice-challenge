@@ -2,7 +2,10 @@ import React from 'react';
 import { Route, Link } from 'react-router-dom';
 
 import Profile from '../Profile/Profile.jsx';
-import BadgeList from '../BadgeList/BadgeList.jsx';
+import Dum1 from '../Dum1/Dum1.jsx';
+import Dum2 from '../Dum2/Dum2.jsx';
+import Dum3 from '../Dum3/Dum3.jsx';
+import Home from '../Home/Home.jsx';
 
 import './TopNav.less';
 
@@ -22,7 +25,11 @@ class TopNav extends React.Component{
 
       </div>
 
-      <Route exact path="/" component={Profile} />
+      <Route exact path="/" component={Home} />
+      <Route exact path="/dum1" component={Dum1} />
+      <Route exact path="/dum2" component={Dum2} />
+      <Route exact path="/dum3" component={Dum3} />
+      <Route exact path="/profile" component={Profile} />
     </div>)
   }
 }
