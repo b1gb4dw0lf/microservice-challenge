@@ -22,6 +22,11 @@ const microserviceKit = new MicroserviceKit({
         name: 'crypto',
         key: 'crypto',
         options: {durable: true}
+      },
+      {
+        name: 'badge',
+        key: 'badge',
+        options: {durable: true}
       }
     ]
   }
