@@ -6,10 +6,11 @@ const router = new Router();
 
 
 router.post('/in', async (ctx, next) => {
+  console.log(ctx.request.body);
   return passport.authenticate('local', async (err, user, info) => {
     if (err) {
       console.log(err);
-      ctx.throw(500);
+      ctx.throw(404);
     }
 
     console.log(info);
