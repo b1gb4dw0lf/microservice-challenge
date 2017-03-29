@@ -1,10 +1,11 @@
 const Router = require('koa-router');
 const microserviceKit = require('../lib/microservice-kit');
+const isAuthenticated = require('../lib/middlewares');
 
 const router = new Router();
 
 
-router.get('/', async (ctx, next) => {
+router.get('/', isAuthenticated, async (ctx, next) => {
   try {
     let userQueue = microserviceKit.amqpKit.getQueue('user');
     let user = await userQueue.sendEvent('get', {email: ctx.state.user.email});
@@ -15,7 +16,7 @@ router.get('/', async (ctx, next) => {
   }
 });
 
-router.post('/', async (ctx, next) => {
+router.post('/', isAuthenticated, async (ctx, next) => {
   try {
     let userQueue = microserviceKit.amqpKit.getQueue('user');
     let user = await userQueue.sendEvent('create', ctx.request.body);
