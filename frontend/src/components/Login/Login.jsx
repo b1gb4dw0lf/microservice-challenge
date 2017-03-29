@@ -21,12 +21,10 @@ class Login extends React.Component {
 
   handleEmailChangeEvent(event) {
     this.setState({email: event.target.value});
-    console.log(this.state);
   }
 
   handlePasswordChangeEvent(event) {
     this.setState({password: event.target.value});
-    console.log(this.state);
   }
 
   handleSubmit(event) {
