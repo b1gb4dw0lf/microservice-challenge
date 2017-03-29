@@ -11,9 +11,10 @@ mongoose.connect('mongodb://database/emlakjet')
 
       badgeQueue.consumeEvent('get', async (data ,done) => {
         try {
-          let badges = Badge.find();
+          let badges = await Badge.find();
           done(null, badges);
         } catch (error) {
+          console.log(error);
           done(error);
         }
       });
@@ -24,6 +25,7 @@ mongoose.connect('mongodb://database/emlakjet')
           let badge = await newBadge.save();
           done(null, badge);
         } catch (error) {
+          console.log(error);
           done(error);
         }
       });

@@ -6,7 +6,8 @@ let Badge = new Schema({
   name: {type: String, required: true},
   slug: {type: String, required: true, unique: true},
   type: {type: String, enum: ['clickable', 'scrollable'], required: true},
-  amount: {type: Number, required: true} // Considered as percent if scrollable
+  amount: {type: Number, required: true}, // Considered as percent if scrollable
+  createdAt: {type: Date, default: Date.now}
 });
 
 
