@@ -12,6 +12,9 @@ passport.use(new LocalStrategy({
     let cryptoQueue = microserviceKit.amqpKit.getQueue('crypto');
 
     let user = await userQueue.sendEvent('get', {email: email});
+
+    if (!user) return done("No user found.", false);
+
     let passwordComparison = await cryptoQueue.sendEvent('compareHash', {
                                                 "password": password,
                                                 "salt": user.salt,
