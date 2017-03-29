@@ -43,6 +43,15 @@ mongoose.connect('mongodb://database/emlakjet').then((conn) => {
         }
       });
 
+      userQueue.consumeEvent('getLeaderboard', async (data, done) => {
+        try {
+          let leaderboard = User.find(null, 'firstName, lastName, points');
+          done(null, leaderboard);
+        } catch (error) {
+          done(error);
+        }
+      });
+
     })
     .catch((error) => { //TODO: Get rid of one catch.
       console.log('Error', error);

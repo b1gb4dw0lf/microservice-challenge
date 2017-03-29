@@ -31,5 +31,15 @@ router.post('/', isAuthenticated, async (ctx, next) => {
   }
 });
 
+router.get('/leaderboard', isAuthenticated, async(ctx, next) => {
+  try {
+    let userQueue = microserviceKit.amqpKit.getQueue('user');
+    let leaderboard = await userQueue.sendEvent('getLeaderboard', ctx.request.body);
+    ctx.body = leaderboard;
+  } catch (error) {
+    ctx.throw(500);
+  }
+});
+
 
 module.exports = router;
