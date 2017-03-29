@@ -45,8 +45,9 @@ mongoose.connect('mongodb://database/emlakjet').then((conn) => {
 
       userQueue.consumeEvent('getLeaderboard', async (data, done) => {
         try {
-          let leaderboard = await User.find().select('firstName lastName points');
-          console.log(leaderboard);
+          let leaderboard = await User.find()
+                                      .select('firstName lastName points')
+                                      .sort('points');
           done(null, leaderboard);
         } catch (error) {
           console.log(error);
