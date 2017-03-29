@@ -11,6 +11,7 @@ let User = new Schema({
     _id: false,
     badge: {type: Schema.ObjectId, ref: 'Badge'}
   }],
+  points: {type: Number, default: 0},
   password: {type: String, required: true},
   salt: {type: String},
   createdAt: {type: Date, default: Date.now}
