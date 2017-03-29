@@ -20,7 +20,7 @@ mongoose.connect('mongodb://database/emlakjet').then((conn) => {
        */
       userQueue.consumeEvent('get', async (data, done) => {
         try {
-          let user = await User.findOne({"email": data.email});
+          let user = await User.findOne({"email": data.email}).populate('badges');
           done(null, user);
         } catch (err) {
           done(err);
