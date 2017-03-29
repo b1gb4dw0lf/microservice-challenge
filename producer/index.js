@@ -29,9 +29,9 @@ const sign = require('./routers/sign');
 /*
  * Url Configurations
  */
-router.use('/', index.routes());
-router.use('/user', user.routes());
-router.use('/sign', sign.routes());
+router.use('/api/', index.routes());
+router.use('/api/user', user.routes());
+router.use('/api/sign', sign.routes());
 
 
 /*
