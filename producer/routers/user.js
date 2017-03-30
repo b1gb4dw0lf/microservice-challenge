@@ -16,7 +16,7 @@ router.get('/', isAuthenticated, async (ctx, next) => {
   }
 });
 
-router.post('/', isAuthenticated, async (ctx, next) => {
+router.post('/', async (ctx, next) => {
   try {
     let userQueue = microserviceKit.amqpKit.getQueue('user');
     let user = await userQueue.sendEvent('create', ctx.request.body);
@@ -35,7 +35,6 @@ router.get('/leaderboard', isAuthenticated, async(ctx, next) => {
   try {
     let userQueue = microserviceKit.amqpKit.getQueue('user');
     let leaderboard = await userQueue.sendEvent('getLeaderboard');
-    console.log(leaderboard);
     ctx.body = leaderboard;
   } catch (error) {
     console.log(error);
