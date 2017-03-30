@@ -12,6 +12,7 @@ class EditBadge extends React.Component{
       type: 'scrollable',
       amount: '',
       percent: '',
+      point: '',
       error: '',
       success: ''
     }
@@ -22,6 +23,7 @@ class EditBadge extends React.Component{
     this.handleAmountChangeEvent = this.handleAmountChangeEvent.bind(this);
     this.handlePercentChangeEvent = this.handlePercentChangeEvent.bind(this);
     this.handleBadgeSelectEvent = this.handleBadgeSelectEvent.bind(this);
+    this.handlePointChangeEvent = this.handlePointChangeEvent.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -36,7 +38,8 @@ class EditBadge extends React.Component{
           slug: badge.slug,
           type: badge.type,
           amount: badge.amount,
-          percent: badge.percent || null
+          percent: badge.percent || null,
+          point: badge.point
         })
       })
       .catch((error) => {
@@ -54,7 +57,8 @@ class EditBadge extends React.Component{
           slug: badge.slug,
           type: badge.type,
           amount: badge.amount,
-          percent: badge.percent || ''
+          percent: badge.percent || '',
+          point: badge.point
         })
       }
     })
@@ -80,13 +84,18 @@ class EditBadge extends React.Component{
     this.setState({percent: event.target.value});
   }
 
+  handlePointChangeEvent(event) {
+    this.setState({point: event.target.value});
+  }
+
   handleSubmit(event) {
     axios.patch('/api/badge/' + this.state.slug, {
       name: this.state.name,
       slug: this.state.slug,
       type: this.state.type,
       amount: this.state.amount,
-      percent: this.state.percent || null
+      percent: this.state.percent || null,
+      point: this.state.point
     })
       .then(() => {
         this.setState({
@@ -137,6 +146,10 @@ class EditBadge extends React.Component{
       <div className="input-container">
         <label>Percent</label>
         <input type="number" name="amount" onChange={this.handlePercentChangeEvent} value={this.state.percent}/>
+      </div>
+      <div className="input-container">
+        <label>Point</label>
+        <input type="number" name="point" onChange={this.handlePointChangeEvent} value={this.state.point}/>
       </div>
       <input type="submit" onClick={this.handleSubmit} value="Update Badge"/>
     </div>);

@@ -8,6 +8,7 @@ let Badge = new Schema({
   type: {type: String, enum: ['clickable', 'scrollable'], required: true},
   amount: {type: Number, required: true},
   percent: {type: Number},
+  point: {type: Number, default: 0},
   createdAt: {type: Date, default: Date.now}
 });
 

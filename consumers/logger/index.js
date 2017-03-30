@@ -26,7 +26,7 @@ mongoose.connect('mongodb://database/emlakjet')
                 if (data.user.badges.indexOf(item._id) == -1) {
                   let userBody = data.user;
                   userBody.badges.push(item);
-                  userBody.points = parseInt(data.user.points) + 1;
+                  userBody.points = parseInt(data.user.points) + item.point;
                   console.log(userBody);
                   let newUser = await userQueue.sendEvent('update', {user: userBody});
                 }
@@ -44,7 +44,7 @@ mongoose.connect('mongodb://database/emlakjet')
                   let userQueue = microserviceKit.amqpKit.getQueue('user');
                   let userBody = data.user;
                   userBody.badges.push(item);
-                  userBody.points = parseInt(data.user.points) + 1;
+                  userBody.points = parseInt(data.user.points) + item.poin;
                   console.log(userBodyr);
                   await userQueue.sendEvent('update', {user: userBody});
                 }
