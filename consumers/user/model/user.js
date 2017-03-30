@@ -7,10 +7,7 @@ let User = new Schema({
   firstName: {type: String, required: true},
   lastName: {type: String, required: true},
   email: {type: String, required: true, unique: true},
-  badges: [{
-    _id: false,
-    badge: {type: Schema.ObjectId, ref: 'Badge'}
-  }],
+  badges: [{type: Schema.ObjectId, ref:'Badge', unique: true}],
   points: {type: Number, default: 0},
   password: {type: String, required: true},
   salt: {type: String},
