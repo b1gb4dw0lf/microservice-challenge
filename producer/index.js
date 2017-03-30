@@ -25,6 +25,7 @@ const index = require('./routers/index');
 const user = require('./routers/user');
 const sign = require('./routers/sign');
 const badge = require('./routers/badge');
+const loggerapi = require('./routers/logger');
 
 
 /*
@@ -34,6 +35,7 @@ router.use('/api/', index.routes());
 router.use('/api/user', user.routes());
 router.use('/api/sign', sign.routes());
 router.use('/api/badge', badge.routes());
+router.use('/api/logger', loggerapi.routes());
 
 
 /*

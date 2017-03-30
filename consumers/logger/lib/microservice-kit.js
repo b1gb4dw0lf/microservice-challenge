@@ -3,14 +3,14 @@
 const MicroserviceKit = require('microservice-kit');
 
 const microserviceKit = new MicroserviceKit({
-  type: 'core-worker',
+  type: 'badge-worker',
   config: null, // Dont use config file! Niye?
   amqp: {
     url: 'amqp://rabbitmq:5672',
     queues: [
       {
-        name: 'core',
-        key: 'core',
+        name: 'logger',
+        key: 'logger',
         options: {durable: true}
       },
       {
@@ -19,18 +19,8 @@ const microserviceKit = new MicroserviceKit({
         options: {durable: true}
       },
       {
-        name: 'crypto',
-        key: 'crypto',
-        options: {durable: true}
-      },
-      {
         name: 'badge',
         key: 'badge',
-        options: {durable: true}
-      },
-      {
-        name: 'logger',
-        key: 'logger',
         options: {durable: true}
       }
     ]
