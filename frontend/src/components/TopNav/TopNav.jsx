@@ -9,6 +9,7 @@ import Home from '../Home/Home.jsx';
 import Login from '../Login/Login.jsx';
 import Admin from '../Admin/Admin.jsx';
 import Scroller from '../Scroller/Scroller.jsx';
+import AddUser from '../AddUser/AddUser.jsx';
 
 import './TopNav.less';
 
@@ -37,6 +38,7 @@ class TopNav extends React.Component{
       <Route path="/admin" component={Admin} />
       <Route path="/profile" component={Profile} />
       <Route path="/login" component={Login} />
+      <Route path="/signup" component={AddUser} />
       <Scroller/>
     </div>)
   }

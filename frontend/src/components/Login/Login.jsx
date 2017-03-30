@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 import './Login.less'
 
@@ -45,7 +45,7 @@ class Login extends React.Component {
     if (this.state.isLoggedIn)
       return <Redirect to={this.props.from || "/profile"}/>
 
-    return <div className="main-container">
+    return (<div className="main-container">
       <div className="form">
         <div className="input-container">
           <label>Email</label>
@@ -56,8 +56,9 @@ class Login extends React.Component {
           <input name="password" type="password" value={this.state.password} onChange={this.handlePasswordChangeEvent}/>
         </div>
         <input type="submit" value="Login" onClick={this.handleSubmit}/>
+        <Link to="/signup">Signup</Link>
       </div>
-    </div>
+    </div>)
   }
 }
 

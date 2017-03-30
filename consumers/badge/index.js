@@ -30,6 +30,16 @@ mongoose.connect('mongodb://database/emlakjet')
         }
       });
 
+      badgeQueue.consumeEvent('update', async (data, done) => {
+        try {
+          let badge = await Badge.findOneAndUpdate({slug: data.slug}, data.body);
+          done(null, badge);
+        } catch (error) {
+          console.log(error);
+          done(error);
+        }
+      });
+
     } catch (error) {
       console.log(error);
     }
