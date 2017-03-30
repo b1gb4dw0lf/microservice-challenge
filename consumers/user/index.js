@@ -48,7 +48,7 @@ mongoose.connect('mongodb://database/emlakjet').then((conn) => {
         try {
           let leaderboard = await User.find()
                                       .select('firstName lastName points')
-                                      .sort('points');
+                                      .sort({points: -1});
           done(null, leaderboard);
         } catch (error) {
           console.log(error);
@@ -62,8 +62,13 @@ mongoose.connect('mongodb://database/emlakjet').then((conn) => {
             firstName: data.user.firstName,
             lastName: data.user.lastName,
             email: data.user.email,
-            badges: data.user.badges
+            badges: data.user.badges,
           }
+
+          if (data.user.points && data.user.points > 0) {
+            newBody.points = data.user.points;
+          }
+
           let user = await User.findOneAndUpdate({_id: data.user._id}, newBody);
 
           done(null, user);
