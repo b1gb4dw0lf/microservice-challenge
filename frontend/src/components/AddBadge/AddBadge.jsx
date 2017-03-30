@@ -8,8 +8,9 @@ class AddUser extends React.Component {
     this.state = {
       name: '',
       slug: '',
-      type: '',
+      type: 'scrollable',
       amount: '',
+      percent: '',
       error: '',
       success: ''
     }
@@ -18,6 +19,7 @@ class AddUser extends React.Component {
     this.handleSlugChangeEvent = this.handleSlugChangeEvent.bind(this);
     this.handleTypeChangeEvent = this.handleTypeChangeEvent.bind(this);
     this.handleAmountChangeEvent = this.handleAmountChangeEvent.bind(this);
+    this.handlePercentChangeEvent = this.handlePercentChangeEvent.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -37,12 +39,17 @@ class AddUser extends React.Component {
     this.setState({amount: event.target.value});
   }
 
+  handlePercentChangeEvent(event) {
+    this.setState({percent: event.target.value});
+  }
+
   handleSubmit(event) {
     axios.post('/api/badge', {
       name: this.state.name,
       slug: this.state.slug,
       type: this.state.type,
-      amount: this.state.amount
+      amount: this.state.amount,
+      percent: this.state.percent || null
     })
       .then(() => {
         this.setState({
@@ -79,6 +86,10 @@ class AddUser extends React.Component {
       <div className="input-container">
         <label>Amount</label>
         <input type="number" name="amount" onChange={this.handleAmountChangeEvent} value={this.state.amount}/>
+      </div>
+      <div className="input-container">
+        <label>Percent</label>
+        <input type="number" name="amount" onChange={this.handlePercentChangeEvent} value={this.state.percent}/>
       </div>
       <input type="submit" onClick={this.handleSubmit} value="Add Badge"/>
     </div>);
