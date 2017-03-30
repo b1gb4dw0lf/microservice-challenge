@@ -20,10 +20,21 @@ class BadgeList extends React.Component{
 
     axios.all([badgeRequest, userRequest])
       .then(axios.spread((badgeRes, userRes) => {
+        //Hack around mongoose populate problem.
+        let userBadges = [];
+        badgeRes.data.forEach((item) => {
+          userRes.data.badges.forEach((innerItem) => {
+            if (item._id == innerItem)
+              userBadges.push({name: item.name, _id: innerItem});
+          });
+        });
+        /////////////////////////////////////
+
         this.setState({
           badges: badgeRes.data,
-          userBadges: userRes.data.badges
+          userBadges: userBadges
         });
+        console.log(userRes.data.badges);
       }))
       .catch((error) => {
         console.log(error);
@@ -46,7 +57,7 @@ class BadgeList extends React.Component{
         if (this.state.userBadges) {
           let isExist = false;
           this.state.userBadges.forEach((innerItem) => {
-            if (item.name == innerItem.name)
+            if (item._id == innerItem._id)
               isExist = true;
           });
 
