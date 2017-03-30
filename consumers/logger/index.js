@@ -24,9 +24,11 @@ mongoose.connect('mongodb://database/emlakjet')
               if (clicks >= item.amount) {
                 let userQueue = microserviceKit.amqpKit.getQueue('user');
                 if (data.user.badges.indexOf(item._id) == -1) {
-                  data.user.badges.push(item);
-                  data.user.points++
-                  let newUser = await userQueue.sendEvent('update', {user: data.user});
+                  let userBody = data.user;
+                  userBody.badges.push(item);
+                  userBody.points = parseInt(data.user.points) + 1;
+                  console.log(userBody);
+                  let newUser = await userQueue.sendEvent('update', {user: userBody});
                 }
               }
             } else {
@@ -40,9 +42,11 @@ mongoose.connect('mongodb://database/emlakjet')
               if (scrolls >= item.amount) {
                 if (data.user.badges.indexOf(item._id) == -1) {
                   let userQueue = microserviceKit.amqpKit.getQueue('user');
-                  data.user.badges.push(item);
-                  data.user.points++
-                  await userQueue.sendEvent('update', {user: data.user});
+                  let userBody = data.user;
+                  userBody.badges.push(item);
+                  userBody.points = parseInt(data.user.points) + 1;
+                  console.log(userBodyr);
+                  await userQueue.sendEvent('update', {user: userBody});
                 }
               }
             }
