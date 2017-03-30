@@ -1,8 +1,11 @@
 import React from 'react';
 
+import Clicker from '../Clicker/Clicker.jsx'
+
 class Dum1 extends React.Component{
   render() {
     return <div className="main-container">
+      <Clicker/>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed odio tortor. Aliquam erat volutpat. Nam est augue, fermentum tempus est vel, fermentum feugiat leo. Nulla auctor in metus vitae rutrum. Vivamus luctus ullamcorper vestibulum. Ut porttitor malesuada ullamcorper. Curabitur vel rutrum sem. Etiam fringilla mi sit amet arcu luctus scelerisque. Aenean at erat quis lectus maximus mattis. Ut interdum feugiat ipsum, iaculis auctor magna mollis sed. Duis tincidunt magna eget cursus commodo. Donec suscipit lobortis finibus. Quisque vulputate eget nisl id tempus.</p>
 
       <p>Nullam mi sapien, gravida in quam a, rhoncus aliquet urna. Donec non nisi ante. Praesent enim mauris, vestibulum ut sagittis at, elementum vel lectus. Aliquam in erat eget lectus vehicula auctor. Donec ultricies iaculis augue in gravida. Donec in dui sed magna finibus pulvinar ac a dolor. Aliquam fermentum nunc at enim aliquet faucibus sit amet sit amet velit. Integer eleifend orci a metus pretium congue. Donec est mi, semper sit amet eros id, semper maximus dolor.</p>
