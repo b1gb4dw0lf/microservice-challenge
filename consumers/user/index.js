@@ -20,9 +20,10 @@ mongoose.connect('mongodb://database/emlakjet').then((conn) => {
        */
       userQueue.consumeEvent('get', async (data, done) => {
         try {
-          let user = await User.findOne({"email": data.email}).populate('badges');
+          let user = await User.findOne({"email": data.email});
           done(null, user);
         } catch (err) {
+          console.log(err);
           done(err);
         }
       });
@@ -49,6 +50,23 @@ mongoose.connect('mongodb://database/emlakjet').then((conn) => {
                                       .select('firstName lastName points')
                                       .sort('points');
           done(null, leaderboard);
+        } catch (error) {
+          console.log(error);
+          done(error);
+        }
+      });
+
+      userQueue.consumeEvent('update', async (data, done) => {
+        try {
+          let newBody = {
+            firstName: data.user.firstName,
+            lastName: data.user.lastName,
+            email: data.user.email,
+            badges: data.user.badges
+          }
+          let user = await User.findOneAndUpdate({_id: data.user._id}, newBody);
+
+          done(null, user);
         } catch (error) {
           console.log(error);
           done(error);
