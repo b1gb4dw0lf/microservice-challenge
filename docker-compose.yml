@@ -18,6 +18,7 @@ services:
   producer:
     build: ./producer
     hostname: ejapi
+    command: ["./wait.sh", "node", "producer/index"]
     depends_on:
       - rabbitmq
     environment:
@@ -35,6 +36,7 @@ services:
     depends_on:
       - rabbitmq
       - database
+    command: ["./wait.sh", "node", "consumers/user/index"]
     environment:
       NODE_ENV: "development"
     restart: unless-stopped
@@ -48,6 +50,7 @@ services:
     build: ./consumers/badge
     depends_on:
       - rabbitmq
+    command: ["./wait.sh", "node", "consumers/badge/index"]
     environment:
       NODE_ENV: "development"
     restart: unless-stopped
@@ -60,6 +63,7 @@ services:
     build: ./consumers/crypto
     depends_on:
       - rabbitmq
+    command: ["./wait.sh", "node", "consumers/crypto/index"]
     environment:
       NODE_ENV: "development"
     restart: unless-stopped
@@ -72,6 +76,7 @@ services:
     build: ./consumers/logger
     depends_on:
       - rabbitmq
+    command: ["./wait.sh", "node", "consumers/logger/index"]
     environment:
       NODE_ENV: "development"
     restart: unless-stopped
