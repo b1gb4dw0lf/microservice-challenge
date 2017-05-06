@@ -23,10 +23,6 @@ For easier deployment docker containers are used. Additional containers exist to
 
 # Usage:
 
-This is a todo section:
-Currently there is an issue with docker that proper fix would delay the project further
-Therefore docker+hack steps are below:
-
 First Need to build Frontend.
 - cd into frontend
 - npm install
@@ -39,15 +35,5 @@ Finally, gently type
 - docker-compose build
 - docker-compose up
 
-At first nodejs services will fail, DON'T PANIC! Because the issue is about
-container startup order to bypass that problem services are running with nodemon.
-Open up producer folder and index.js after you are sure that rabbitmq and mongo is
-running use cmd + s combo to trigger nodemon.
-
-If everything is worked fine. App should be available at localhost.
-By the way this app uses port 80 therefore nginx or apache should be off or configured
-to use another port.
-
 # What Is NOT Done:
 - Friend invitations are not available.
-- Docker container orchestration
