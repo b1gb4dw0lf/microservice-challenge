@@ -2,7 +2,8 @@
 
 ## Description
 
-This is the repo for the emlak-jet challenge and the applications in this repo is not meant for production. Also be aware that this repo solves imaginary scalability issues in order to complete the task.
+This is the repo for emlak-jet challenge and the applications in this repo is not meant for production. 
+Also be aware that this repo solves imaginary scalability issues and tightly coupled in order to complete the task.
 
 ## Repo Content
 
