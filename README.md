@@ -25,11 +25,8 @@ For easier deployment docker containers are used. Additional containers exist to
 
 First Need to build Frontend.
 - cd into frontend
-- npm install
+- npm install --dev-dependencies
 - npm run build
-
-Then
-- npm install all consumers + producer paths.
 
 Finally, gently type
 - docker-compose build
