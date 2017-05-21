@@ -18,14 +18,12 @@ services:
   producer:
     build: ./producer
     hostname: ejapi
-    command: ["./wait.sh", "node", "producer/index"]
+    command: ["./wait.sh", "node", "index"]
     depends_on:
       - rabbitmq
     environment:
       NODE_ENV: "development"
     restart: unless-stopped
-    volumes:
-      - "./:/usr/src/app"
     links:
       - rabbitmq
     ports:
@@ -36,12 +34,10 @@ services:
     depends_on:
       - rabbitmq
       - database
-    command: ["./wait.sh", "node", "consumers/user/index"]
+    command: ["./wait.sh", "node", "index"]
     environment:
       NODE_ENV: "development"
     restart: unless-stopped
-    volumes:
-      - "./:/usr/src/app"
     links:
       - rabbitmq
       - database
@@ -50,12 +46,10 @@ services:
     build: ./consumers/badge
     depends_on:
       - rabbitmq
-    command: ["./wait.sh", "node", "consumers/badge/index"]
+    command: ["./wait.sh", "node", "index"]
     environment:
       NODE_ENV: "development"
     restart: unless-stopped
-    volumes:
-      - "./:/usr/src/app"
     links:
       - rabbitmq
 
@@ -63,12 +57,10 @@ services:
     build: ./consumers/crypto
     depends_on:
       - rabbitmq
-    command: ["./wait.sh", "node", "consumers/crypto/index"]
+    command: ["./wait.sh", "node", "index"]
     environment:
       NODE_ENV: "development"
     restart: unless-stopped
-    volumes:
-      - "./:/usr/src/app"
     links:
       - rabbitmq
 
@@ -76,12 +68,10 @@ services:
     build: ./consumers/logger
     depends_on:
       - rabbitmq
-    command: ["./wait.sh", "node", "consumers/logger/index"]
+    command: ["./wait.sh", "node", "index"]
     environment:
       NODE_ENV: "development"
     restart: unless-stopped
-    volumes:
-      - "./:/usr/src/app"
     links:
       - rabbitmq
 

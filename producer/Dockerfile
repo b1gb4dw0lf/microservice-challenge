@@ -6,10 +6,12 @@ RUN npm install nodemon -g
 
 WORKDIR /usr/src/app
 
-ADD ./package.json /usr/src/app/
+COPY package.json /usr/src/app/
 
 RUN npm install
 
+COPY . /usr/src/app/
+
 EXPOSE 3000
 
-CMD nodemon /usr/src/app/producer/index.js
+CMD node /usr/src/app/index.js
